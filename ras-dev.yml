@@ -1,9 +1,0 @@
-version: '2'
-services:
- ras-postgres:
-  container_name: ras-postgres
-  image: sdcplatform/postgres
-  ports:
-   - "${EX_POSTGRES_PORT}:${POSTGRES_PORT}"
-  environment:
-    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
