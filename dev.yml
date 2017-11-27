@@ -1,0 +1,35 @@
+version: '3'
+services:
+ ons-postgres:
+  container_name: postgres
+  image: sdcplatform/postgres
+  ports:
+   - "${EX_POSTGRES_PORT}:5432"
+ redis:
+  container_name: redis
+  image: redis:3.2.9
+  ports:
+   - "${EX_REDIS_PORT}:6379"
+ rabbitmq:
+  container_name: rabbitmq
+  image: rabbitmq:3.6.10-management
+  ports:
+    - "5369:4369"
+    - "45672:25672"
+    - "${EX_RABBIT_PORT}:5671-5672"
+    - "16671-16672:15671-15672"
+ sftp:
+    container_name: sftp
+    image: atmoz/sftp
+    volumes:
+        - ~/Documents/sftp:/home/centos/Documents/sftp
+    ports:
+        - "${EX_SFTP_PORT}:22"
+    command: centos:JLibV2&XD,:1001
+ cfdatabasetool:
+  container_name: cfdatabasetool
+  image: sdcplatform/cfdatabasetool
+  environment:
+   - spring.datasource.url=jdbc:postgresql://postgres:5432/postgres
+  ports:
+   - "9000:9000"

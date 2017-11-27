@@ -1,0 +1,211 @@
+version: '3'
+services:
+  sample:
+    container_name: sample
+    image: sdcplatform/samplesvc
+    ports:
+     - "${SAMPLE_PORT}:8125"
+     - "${SAMPLE_DEBUG_PORT}:5125"
+     - "${SAMPLE_MAN_PORT}:8225"
+    external_links:
+     - postgres
+     - rabbitmq
+     - redis
+     - sftp
+     - party
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
+     - liquibase_url=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - RABBITMQ_PORT=${RABBIT_PORT}
+     - RABBITMQ_HOST=${RABBIT_HOST}
+     - REDIS_HOST=${REDIS_HOST}
+     - REDIS_PORT=${REDIS_PORT}
+     - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
+     - SFTP_HOST=${SFTP_HOST}
+     - SFTP_PORT=${SFTP_PORT}
+     - PARTY_SVC_CONNECTION_CONFIG_HOST=${PARTY_HOST}
+     - PARTY_SVC_CONNECTION_CONFIG_PORT=${PARTY_PORT}
+     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${PARTY_USER}
+     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
+     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT}
+  case:
+    container_name: casesvc
+    image: sdcplatform/casesvc
+    ports:
+     - "${CASE_PORT}:8171"
+     - "${CASE_DEBUG_PORT}:5171"
+     - "${CASE_MAN_PORT}:8271"
+    external_links:
+     - postgres
+     - rabbitmq
+     - redis
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
+     - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - RABBITMQ_HOST=${RABBIT_HOST}
+     - RABBITMQ_PORT=${RABBIT_PORT}
+     - REDIS_HOST=${REDIS_HOST}
+     - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
+     - ACTION_SVC_CONNECTION_CONFIG_HOST=${ACTION_HOST}
+     - ACTION_SVC_CONNECTION_CONFIG_PORT=${ACTION_PORT}
+     - INTERNET_ACCESS_CODE_SVC_CONNECTION_CONFIG_HOST=${IAC_HOST}
+     - INTERNET_ACCESS_CODE_SVC_CONNECTION_CONFIG_PORT=${IAC_PORT}
+     - COLLECTION_EXERCISE_SVC_CONNECTION_CONFIG_HOST=${COLLEX_HOST}
+     - COLLECTION_EXERCISE_SVC_CONNECTION_CONFIG_PORT=${COLLEX_PORT}
+     - CASE_DISTRIBUTION_DELAY_MILLI_SECONDS=30000
+     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${CASE_DEBUG_PORT}
+  action:
+    container_name: action
+    image: sdcplatform/actionsvc
+    ports:
+     - "${ACTION_PORT}:8151"
+     - "${ACTION_DEBUG_PORT}:5151"
+     - "${ACTION_MAN_PORT}:8251"
+    external_links:
+     - postgres
+     - rabbitmq
+     - redis
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
+     - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - RABBITMQ_HOST=${RABBIT_HOST}
+     - RABBITMQ_PORT=${RABBIT_PORT}
+     - REDIS_HOST=${REDIS_HOST}
+     - CASE_SVC_CONNECTION_CONFIG_HOST=${CASE_HOST}
+     - CASE_SVC_CONNECTION_CONFIG_PORT=${CASE_PORT}
+     - COLLECTION_EXERCISE_SVC_CONNECTION_CONFIG_HOST=${COLLEX_HOST}
+     - COLLECTION_EXERCISE_SVC_CONNECTION_CONFIG_PORT=${COLLEX_PORT}
+     - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
+     - PARTY_SVC_CONNECTION_CONFIG_HOST=${PARTY_HOST}
+     - PARTY_SVC_CONNECTION_CONFIG_PORT=${PARTY_PORT}
+     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${PARTY_USER}
+     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
+     - SURVEY_SVC_CONNECTION_CONFIG_HOST=${SURVEY_HOST}
+     - SURVEY_SVC_CONNECTION-CONFIG_PORT=${SURVEY_PORT}
+     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTION_DEBUG_PORT}
+  actionexporter:
+    container_name: actionexporter
+    image: sdcplatform/actionexportersvc
+    ports:
+     - "${ACTIONEXP_PORT}:8141"
+     - "${ACTIONEXP_DEBUG_PORT}:5141"
+     - "${ACTIONEXP_MAN_PORT}:8241"
+    external_links:
+     - postgres
+     - rabbitmq
+     - redis
+     - sftp
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
+     - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - RABBITMQ_HOST=${RABBIT_HOST}
+     - RABBITMQ_PORT=${RABBIT_PORT}
+     - REDIS_HOST=${REDIS_HOST}
+     - SFTP_HOST=${SFTP_HOST}
+     - SFTP_PORT=${SFTP_PORT}
+     - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
+     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTIONEXP_DEBUG_PORT}
+  iac:
+    container_name: iac
+    image: sdcplatform/iacsvc 
+    ports:
+     - "${IAC_PORT}:8121"
+     - "${IAC_DEBUG_PORT}:5121"
+     - "${IAC_MAN_PORT}:8221"
+    external_links:
+     - postgres
+     - rabbitmq
+     - redis
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
+     - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - RABBITMQ_HOST=${RABBIT_HOST}
+     - RABBITMQ_PORT=${RABBIT_PORT}
+     - REDIS_HOST=${REDIS_HOST}
+     - CASE_SVC_CONNECTION_CONFIG_HOST=${CASE_HOST}
+     - CASE_SVC_CONNECTION_CONFIG_PORT=${CASE_PORT}
+     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${IAC_DEBUG_PORT}
+  sdx-gateway:
+    container_name: sdx-gateway
+    image: sdcplatform/sdx-gateway
+    ports:
+     - "8191:8191"
+     - "5191:5191"
+     - "8291:8291"
+    external_links:
+     - postgres
+     - rabbitmq
+     - redis
+     - sftp
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
+     - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - RABBITMQ_HOST=${RABBIT_HOST}
+     - RABBITMQ_PORT=${RABBIT_PORT}
+     - REDIS_HOST=${REDIS_HOST}
+     - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
+     - SFTP_HOST=${SFTP_HOST}
+     - SFTP_PORT=${SFTP_PORT}
+     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5191
+  collectionexercise:
+    container_name: collex
+    image: sdcplatform/collectionexercisesvc 
+    ports:
+     - "${COLLEX_PORT}:8145"
+     - "${COLLEX_DEBUG_PORT}:5145"
+     - "${COLLEX_MAN_PORT}:8245"
+    external_links:
+     - postgres
+     - rabbitmq
+     - redis
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
+     - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - RABBITMQ_HOST=${RABBIT_HOST}
+     - RABBITMQ_PORT=${RABBIT_PORT}
+     - REDISSON_CONFIG_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
+     - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
+     - SAMPLE_SVC_CONNECTION_CONFIG_HOST=${SAMPLE_HOST}
+     - SAMPLE_SVC_CONNECTION_CONFIG_PORT=${SAMPLE_PORT}
+     - SURVEY_SVC_CONNECTION_CONFIG_HOST=${SURVEY_HOST}
+     - SURVEY_SVC_CONNECTION_CONFIG_PORT=${SURVEY_PORT}
+     - PARTY_SVC_CONNECTION_CONFIG_HOST=${PARTY_HOST}
+     - PARTY_SVC_CONNECTION_CONFIG_PORT=${PARTY_PORT}
+     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${PARTY_USER}
+     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
+     - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_HOST=${COLL_INST_HOST}
+     - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_PORT=${COLL_INST_PORT}
+     - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_USERNAME=${COLL_INST_USER}
+     - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_PASSWORD=${COLL_INST_PASSWORD}
+     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${COLLEX_DEBUG_PORT}
+  survey:
+    container_name: survey
+    image: sdcplatform/surveysvc
+    ports:
+     - "${SURVEY_PORT}:8080"
+    external_links:
+     - postgres
+    environment:
+     - DATABASE_URL=postgres://postgres:postgres@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres?sslmode=disable
+     - SECURITY_USER_NAME=${SURVEY_USER}
+     - SECURITY_USER_PASSWORD=${SURVEY_PASSWORD}
+  notifygateway:
+    container_name: notifygateway
+    image: sdcplatform/notifygatewaysvc
+    ports:
+     - "8281:8281"
+     - "5281:5281"
+    external_links:
+     - rabbitmq
+     - postgres
+    environment:
+     - RABBITMQ_HOST=${RABBIT_HOST}
+     - RABBITMQ_PORT=${RABBIT_PORT}
+     - NOTIFY_APIKEY=ctpnotifygateway-0e515090-7962-40e8-a8c7-acbacf079c21-ac979394-a989-4f79-b0e0-6abcca564393
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
+     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5281
+networks:
+  default:
+    external:
+      name: rmdockerdev_default
