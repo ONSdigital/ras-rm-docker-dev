@@ -187,8 +187,8 @@ services:
      - postgres
     environment:
      - DATABASE_URL=postgres://postgres:postgres@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres?sslmode=disable
-     - SECURITY_USER_NAME=${SURVEY_USER}
-     - SECURITY_USER_PASSWORD=${SURVEY_PASSWORD}
+     - security_user_name=${SURVEY_USER}
+     - security_user_password=${SURVEY_PASSWORD}
   notifygateway:
     container_name: notifygateway
     image: sdcplatform/notifygatewaysvc
@@ -208,4 +208,4 @@ services:
 networks:
   default:
     external:
-      name: rmdockerdev_default
+      name: rasrmdockerdev_default

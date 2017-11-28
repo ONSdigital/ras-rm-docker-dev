@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-  api-gateway:
-    container_name: api-gateway
-    image: sdcplatform/ras-api-gateway
+  frontstage-api:
+    container_name: frontstage-api
+    image: sdcplatform/ras-frontstage-api
     ports:
-      - "${GATEWAY_PORT}:${GATEWAY_PORT}"
+      - "${FRONTSTAGE_API_PORT}:${FRONTSTAGE_API_PORT}"
     environment:
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
@@ -17,6 +17,8 @@ services:
     image: sdcplatform/ras-party
     ports:
       - "${PARTY_PORT}:${PARTY_PORT}"
+    external_links:
+     - postgres
     environment:
       - ras-party-db.uri=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
       - oauth2-service.port=8040
