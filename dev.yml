@@ -5,6 +5,11 @@ services:
   image: sdcplatform/postgres
   ports:
    - "${EX_POSTGRES_PORT}:5432"
+ secure-message-postgres:
+  container_name: sm-postgres
+  image: sdcplatform/postgres
+  ports:
+   - "${EX_SM_POSTGRES_PORT}:5432"
  redis:
   container_name: redis
   image: redis:3.2.9
