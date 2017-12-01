@@ -120,6 +120,10 @@ services:
       -  FS_DEV_PORT=5001
       -  SECURITY_USER_NAME=${SECURITY_USER_NAME}
       -  SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
+      -  RAS_FRONTSTAGE_API_HOST=frontstage-api
+      -  RAS_FRONTSTAGE_API_PORT=8083
+      -  REDIS_HOST=redis
+      -  REDIS_PORT=6379
     networks:
       - rasrmdockerdev_default
 
