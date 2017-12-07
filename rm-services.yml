@@ -27,7 +27,7 @@ services:
      - PARTY_SVC_CONNECTION_CONFIG_PORT=${PARTY_PORT}
      - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${PARTY_USER}
      - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
-     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT}
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT}
   case:
     container_name: casesvc
     image: sdcplatform/casesvc
@@ -53,7 +53,7 @@ services:
      - COLLECTION_EXERCISE_SVC_CONNECTION_CONFIG_HOST=${COLLEX_HOST}
      - COLLECTION_EXERCISE_SVC_CONNECTION_CONFIG_PORT=${COLLEX_PORT}
      - CASE_DISTRIBUTION_DELAY_MILLI_SECONDS=30000
-     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${CASE_DEBUG_PORT}
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${CASE_DEBUG_PORT}
   action:
     container_name: action
     image: sdcplatform/actionsvc
@@ -82,7 +82,7 @@ services:
      - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
      - SURVEY_SVC_CONNECTION_CONFIG_HOST=${SURVEY_HOST}
      - SURVEY_SVC_CONNECTION-CONFIG_PORT=${SURVEY_PORT}
-     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTION_DEBUG_PORT}
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTION_DEBUG_PORT}
   actionexporter:
     container_name: actionexporter
     image: sdcplatform/actionexportersvc
@@ -104,7 +104,7 @@ services:
      - SFTP_HOST=${SFTP_HOST}
      - SFTP_PORT=${SFTP_PORT}
      - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
-     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTIONEXP_DEBUG_PORT}
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTIONEXP_DEBUG_PORT}
      - FREEMARKER_DELAYFORNEWTEMPLATES=3600000
      - DATA_GRID_LOCK_TIME_TO_LIVE_SECONDS=45
   iac:
@@ -126,7 +126,7 @@ services:
      - REDIS_HOST=${REDIS_HOST}
      - CASE_SVC_CONNECTION_CONFIG_HOST=${CASE_HOST}
      - CASE_SVC_CONNECTION_CONFIG_PORT=${CASE_PORT}
-     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${IAC_DEBUG_PORT}
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${IAC_DEBUG_PORT}
   sdx-gateway:
     container_name: sdx-gateway
     image: sdcplatform/sdx-gateway
@@ -148,7 +148,7 @@ services:
      - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
      - SFTP_HOST=${SFTP_HOST}
      - SFTP_PORT=${SFTP_PORT}
-     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5191
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5191
   collectionexercise:
     container_name: collex
     image: sdcplatform/collectionexercisesvc 
@@ -181,7 +181,7 @@ services:
      # - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_PASSWORD=${COLL_INST_PASSWORD}
      - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_USERNAME=${SECURITY_USER_NAME}
      - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_PASSWORD=${SECURITY_USER_PASSWORD}
-     - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${COLLEX_DEBUG_PORT}
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${COLLEX_DEBUG_PORT}
   survey:
     container_name: survey
     image: sdcplatform/surveysvc
@@ -205,7 +205,6 @@ services:
     environment:
      - RABBITMQ_HOST=${RABBIT_HOST}
      - RABBITMQ_PORT=${RABBIT_PORT}
-     - NOTIFY_APIKEY=ctpnotifygateway-0e515090-7962-40e8-a8c7-acbacf079c21-ac979394-a989-4f79-b0e0-6abcca564393
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5281
