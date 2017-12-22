@@ -46,7 +46,7 @@ services:
     external_links:
      - postgres
     environment:
-      - ras-party-db.uri=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
+      - DATABASE_URI=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
       - oauth2-service.port=8040
       - oauth2-service.client_id=ons@ons.gov
       - oauth2-service.client_secret=password
