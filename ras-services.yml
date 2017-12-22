@@ -46,16 +46,16 @@ services:
     external_links:
      - postgres
     environment:
-      - ras-party-db.uri=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
-      - oauth2-service.port=8040
-      - oauth2-service.client_id=ons@ons.gov
-      - oauth2-service.client_secret=password
-      - case-service.host=casesvc
-      - collectionexercise-service.host=collex
-      - survey-service.host=survey
-      - api-gateway.host=api-gateway
-      - iac-service.host=iac
-      - oauth2-service.host=oauth2-service
+      - DATABASE_URI=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
+      - RAS_OAUTH_SERVICE_PORT=8040
+      - RAS_OAUTH_CLIENT_ID=ons@ons.gov
+      - RAS_OAUTH_CLIENT_SECRET=password
+      - RAS_CASE_SERVICE_HOST=casesvc
+      - RAS_COLLEX_SERVICE_HOST=collex
+      - RAS_SURVEY_SERVICE_HOST=survey
+      - RAS_API_GATEWAY_HOST=api-gateway
+      - RAS_IAC_SERVICE_HOST=iac
+      - RAS_OAUTH_SERVICE_HOST=oauth2-service
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
     networks:
@@ -133,7 +133,7 @@ services:
     ports:
       - "${COLLECTION_INSTRUMENT_PORT}:${COLLECTION_INSTRUMENT_PORT}"
     environment:
-      - db_port=${POSTGRES_PORT}
+      - DATABASE_URI=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
       - API_GATEWAY_CASE_URL=http://casesvc:8171/cases/
       - API_GATEWAY_COLLECTION_EXERCISE_URL=http://collex:8145/collectionexercises/
       - API_GATEWAY_SURVEY_SERVICE_URL=http://survey:8080/surveys/
