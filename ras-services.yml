@@ -155,6 +155,8 @@ services:
     environment:
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
+      - RM_SURVEY_SERVICE_HOST=${SURVEY_HOST}
+      - RM_SURVEY_SERVICE_PORT=${SURVEY_PORT}
     networks:
       - rasrmdockerdev_default
 
@@ -170,6 +172,18 @@ services:
       - DJANGO_SETTINGS_MODULE=proj.settings.docker
     external_links:
       - postgres:ras-postgres
+    networks:
+      - rasrmdockerdev_default
+
+  response-operations-ui:
+    container_name: response-operations-ui
+    image: sdcplatform/response-operations-ui
+    ports:
+      - 8085:8085
+    environment:
+      - BACKSTAGE_API_URL=http://backstage:${BACKSTAGE_PORT}/backstage-api/v1
+    external_links:
+      - backstage:backstage
     networks:
       - rasrmdockerdev_default
 
