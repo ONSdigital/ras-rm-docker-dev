@@ -33,7 +33,7 @@ services:
       - RM_SURVEY_SERVICE_PORT=${SURVEY_PORT}
       - RM_SURVEY_SERVICE_PROTOCOL=http
       - RAS_COLLECTION_INSTRUMENT_SERVICE_HOST=${COLL_INST_HOST}
-      - RAS_COLLECTION_INSTRUMENT_SERVICE_PORT=${COLLECTION_INSTRUMENT_PORT}
+      - RAS_COLLECTION_INSTRUMENT_SERVICE_PORT=${COLL_INST_PORT}
       - RAS_COLLECTION_INSTRUMENT_SERVICE_PROTOCOL=http
     networks:
       - rasrmdockerdev_default
@@ -51,7 +51,7 @@ services:
       - RAS_OAUTH_CLIENT_ID=ons@ons.gov
       - RAS_OAUTH_CLIENT_SECRET=password
       - RAS_CASE_SERVICE_HOST=casesvc
-      - RAS_COLLEX_SERVICE_HOST=collex
+      - RAS_COLLEX_SERVICE_HOST=${COLLEX_HOST}
       - RAS_SURVEY_SERVICE_HOST=survey
       - RAS_API_GATEWAY_HOST=api-gateway
       - RAS_IAC_SERVICE_HOST=iac
@@ -85,7 +85,7 @@ services:
       - "${FRONTSTAGE_PORT}:${FRONTSTAGE_PORT}"
     environment:
       -  API_GATEWAY_CASE_URL=http://casesvc:8171/cases/
-      -  API_GATEWAY_COLLECTION_EXERCISE_URL=http://collex:8145/collectionexercises/
+      -  API_GATEWAY_COLLECTION_EXERCISE_URL=http://${COLLEX_HOST}:8145/collectionexercises/
       -  API_GATEWAY_SURVEYS_URL=http://survey:8080/surveys/
       -  API_GATEWAY_IAC_URL=http://iac:8121/iacs/
       -  API_GATEWAY_COLLECTION_INSTRUMENT_URL=http://collection-instrument:8082/collection-instrument-api/1.0.2/
@@ -112,7 +112,7 @@ services:
       -  RAS_PARTY_SERVICE_HOST=party-service
       -  RAS_PARTY_SERVICE_PORT=8081
       -  RAS_PARTY_SERVICE_PROTOCOL=http
-      -  RM_COLLECTION_EXERCISE_SERVICE_HOST=collex
+      -  RM_COLLECTION_EXERCISE_SERVICE_HOST=${COLLEX_HOST}
       -  RM_COLLECTION_EXERCISE_SERVICE_PORT=8145
       -  RM_COLLECTION_EXERCISE_SERVICE_PROTOCOL=http
       -  RM_SURVEY_SERVICE_HOST=survey
@@ -135,17 +135,19 @@ services:
     container_name: collection-instrument
     image: sdcplatform/ras-collection-instrument
     ports:
-      - "${COLLECTION_INSTRUMENT_PORT}:${COLLECTION_INSTRUMENT_PORT}"
+      - "${COLL_INST_PORT}:${COLL_INST_PORT}"
     environment:
       - DATABASE_URI=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
       - API_GATEWAY_CASE_URL=http://casesvc:8171/cases/
-      - API_GATEWAY_COLLECTION_EXERCISE_URL=http://collex:8145/collectionexercises/
+      - API_GATEWAY_COLLECTION_EXERCISE_URL=http://${COLLEX_HOST}:8145/collectionexercises/
       - API_GATEWAY_SURVEY_SERVICE_URL=http://survey:8080/surveys/
       - RABBITMQ_AMQP=amqp://guest:guest@rabbitmq:5672
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
       - JSON_SECRET_KEYS=${JSON_SECRET_KEYS}
       - CONFIG_YML=config/config-docker.yaml
+      - ONS_CRYPTOKEY=somethingsecure
+      - COLLECTION_EXERCISE_HOST=${COLLEX_HOST}
     networks:
       - rasrmdockerdev_default
     external_links:
@@ -162,6 +164,7 @@ services:
       - RM_SURVEY_SERVICE_HOST=${SURVEY_HOST}
       - RM_SURVEY_SERVICE_PORT=${SURVEY_PORT}
       - RM_COLLECTION_EXERCISE_SERVICE_HOST=${COLLEX_HOST}
+      - RAS_COLLECTION_INSTRUMENT_SERVICE_HOST=${COLL_INST_HOST}
       - RM_SAMPLE_SERVICE_HOST=${SAMPLE_HOST}
       - RM_SAMPLE_SERVICE_PORT=${SAMPLE_PORT}
     networks:
