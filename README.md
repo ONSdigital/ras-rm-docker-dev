@@ -42,8 +42,8 @@ Development using this repo can be done by doing the following:
 1. Stop the service with `docker-compose -f ras-services.yml stop response-operations-ui`
 1. Delete the stopped container with `docker-compose -f ras-services.yml rm response-operations-ui`
 1. Rebuild the image and tag it as the latest to 'trick' the build into thinking we already have the latest and don't need to pull down the image from dockerhub.
-  - Python repo - `docker build . -t sdcplatform/response-operations-ui:latest`
-  - Java repo - `mvn clean install` will automatically rebuild the docker image
+    1. Python repo - `docker build . -t sdcplatform/response-operations-ui:latest`
+    1. Java repo - `mvn clean install` will automatically rebuild the docker image
 1. Finally, start the service again with `docker-compose -f ras-services.yml up -d response-operations-ui`
 
 ### Running natively with local changes
