@@ -76,3 +76,11 @@ ERROR: Encountered errors while bringing up the project.
 make: *** [up] Error 1
 ```
 - Kill the process hogging that port by running `lsof -n -i:8002|awk 'FNR == 2 { print $2 }'|xargs kill` where 8002 is the port you are trying to bind to
+
+### Docker network
+```
+ERROR: Network rasrmdockerdev_default declared as external, but could not be found. Please create the network manually using `docker network create rasrmdockerdev_default` and try again.
+make: *** [up] Error 1
+```
+
+- Run `docker network create rasrmdockerdev_default` to create the docker network.
