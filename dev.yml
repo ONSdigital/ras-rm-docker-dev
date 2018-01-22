@@ -35,6 +35,8 @@ services:
   container_name: cfdatabasetool
   image: sdcplatform/cfdatabasetool
   environment:
-   - spring.datasource.url=jdbc:postgresql://postgres:5432/postgres
+   - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+   - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=12000
   ports:
    - "9000:9000"
+   - "12000:12000"
