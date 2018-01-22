@@ -67,7 +67,7 @@ make: *** [pull] Error 1
 ### Database already running
 - `sm-postgres` container not working? Check there isn't a local postgres running on your system as it uses port 5432 and won't start if another service is running on this port.
 
-### Post already bound to
+### Port already bound to
 ```
 ERROR: for collection-instrument  Cannot start service collection-instrument-service: driver failed programming external connectivity on endpoint collection-instrument (7c6ad787c9d57028a44848719d8d705b14e1f82ea2f393ada80e5f7e476c50b1): Error starting userland pStarting secure-message ... done
 
