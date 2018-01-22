@@ -84,3 +84,10 @@ make: *** [up] Error 1
 ```
 
 - Run `docker network create rasrmdockerdev_default` to create the docker network.
+
+### Unexpected behavior
+
+1. Stop docker containers `make down`
+1. Remove containers `docker rm $(docker ps -aq)`
+1. Delete images `docker rmi $(docker images -qa)`
+1. Pull and run containers `make up`
