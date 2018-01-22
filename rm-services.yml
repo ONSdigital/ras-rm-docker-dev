@@ -197,7 +197,7 @@ services:
     container_name: notifygateway
     image: sdcplatform/notifygatewaysvc
     ports:
-     - "8281:8281"
+     - "8181:8181"
      - "5281:5281"
     external_links:
      - rabbitmq
