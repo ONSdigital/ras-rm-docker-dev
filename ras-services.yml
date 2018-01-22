@@ -121,13 +121,13 @@ services:
       -  RAS_SECURE_MESSAGE_SERVICE_HOST=secure-message
       -  RAS_SECURE_MESSAGE_SERVICE_PORT=5050
       -  RAS_SECURE_MESSAGE_SERVICE_PROTOCOL=http
-      -  FS_DEV_PORT=5001
       -  SECURITY_USER_NAME=${SECURITY_USER_NAME}
       -  SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
       -  RAS_FRONTSTAGE_API_HOST=frontstage-api
       -  RAS_FRONTSTAGE_API_PORT=8083
       -  REDIS_HOST=redis
       -  REDIS_PORT=6379
+      -  PORT=8082
     networks:
       - rasrmdockerdev_default
 
