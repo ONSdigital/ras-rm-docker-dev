@@ -2,7 +2,7 @@ version: '3'
 services:
   sample:
     container_name: sample
-    image: sdcplatform/samplesvc
+    image: sdcplatform/samplesvc:date-refactor
     ports:
      - "${SAMPLE_PORT}:8125"
      - "${SAMPLE_DEBUG_PORT}:5125"
@@ -30,7 +30,7 @@ services:
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT}
   case:
     container_name: casesvc
-    image: sdcplatform/casesvc
+    image: sdcplatform/casesvc:date-refactor
     ports:
      - "${CASE_PORT}:8171"
      - "${CASE_DEBUG_PORT}:5171"
@@ -56,7 +56,7 @@ services:
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${CASE_DEBUG_PORT}
   action:
     container_name: action
-    image: sdcplatform/actionsvc
+    image: sdcplatform/actionsvc:date-refactor
     ports:
      - "${ACTION_PORT}:8151"
      - "${ACTION_DEBUG_PORT}:5151"
@@ -85,7 +85,7 @@ services:
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTION_DEBUG_PORT}
   actionexporter:
     container_name: actionexporter
-    image: sdcplatform/actionexportersvc
+    image: sdcplatform/actionexportersvc:date-refactor
     ports:
      - "${ACTIONEXP_PORT}:8141"
      - "${ACTIONEXP_DEBUG_PORT}:5141"
@@ -129,7 +129,7 @@ services:
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${IAC_DEBUG_PORT}
   sdx-gateway:
     container_name: sdx-gateway
-    image: sdcplatform/sdx-gateway
+    image: sdcplatform/sdx-gateway:date-refactor
     ports:
      - "8191:8191"
      - "5191:5191"
@@ -151,7 +151,7 @@ services:
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5191
   collectionexercise:
     container_name: collex
-    image: sdcplatform/collectionexercisesvc 
+    image: sdcplatform/collectionexercisesvc:date-refactor
     ports:
      - "${COLLEX_PORT}:8145"
      - "${COLLEX_DEBUG_PORT}:5145"
