@@ -91,3 +91,7 @@ make: *** [up] Error 1
 1. Remove containers `docker rm $(docker ps -aq)`
 1. Delete images `docker rmi $(docker images -qa)`
 1. Pull and run containers `make up`
+
+### Service not up?
+
+Some services aren't resilient to the database not being up before the service has started. Rerun `make up`
