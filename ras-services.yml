@@ -191,7 +191,7 @@ services:
     ports:
       - 8085:8085
     environment:
-      - BACKSTAGE_API_URL=http://backstage:${BACKSTAGE_PORT}/backstage-api/v1
+      - BACKSTAGE_API_URL=http://backstage:${BACKSTAGE_PORT}/backstage-api
     external_links:
       - backstage:backstage
     networks:
