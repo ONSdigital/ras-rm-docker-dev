@@ -167,6 +167,7 @@ services:
       - RAS_COLLECTION_INSTRUMENT_SERVICE_HOST=${COLL_INST_HOST}
       - RM_SAMPLE_SERVICE_HOST=${SAMPLE_HOST}
       - RM_SAMPLE_SERVICE_PORT=${SAMPLE_PORT}
+      - RAS_PARTY_SERVICE_HOST=${PARTY_HOST}
     networks:
       - rasrmdockerdev_default
 
