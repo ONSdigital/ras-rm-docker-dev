@@ -95,3 +95,10 @@ make: *** [up] Error 1
 ### Service not up?
 
 Some services aren't resilient to the database not being up before the service has started. Rerun `make up`
+
+### Services running sluggishly?
+
+When ras/rm is all running it takes a lot of memory.  Click on the docker icon in the top bar of your Mac,
+then click on 'preferences', then go to the 'advanced' tab.  The default memory allocated to Docker is 2gb.
+Bumping that up to 8gb and the number of cores to 4 should make the service run much smoother. Note: These aren't
+hard and fast numbers, this is just what worked for people.
