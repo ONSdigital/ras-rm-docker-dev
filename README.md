@@ -53,6 +53,18 @@ Development using this repo can be done by doing the following:
 1. Finally, start the services excluding the service(s) you are running locally
 1. Run the service(s) locally
 
+### pgAdmin 4
+1. Start all the services `make up`
+1. Navigate to `localhost:80` in your browser
+1. Login with `ons@ons.gov` / `secret`
+1. Object -> Create -> Server...
+1. Give it a suitable name then in the connection tab:
+    1. `postgres` for the host name
+    1. `5432` for the port
+    1. `postgres` for the maintenance database
+    1. `postgres` for the username
+1. Click save to close the dialog and connect to the postgres docker container
+
 ## Troubleshooting
 ### Not logged in
 ```
