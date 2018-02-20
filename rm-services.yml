@@ -258,7 +258,7 @@ services:
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${NOTIFY_GATEWAY_DEBUG_PORT}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8181/info"]
+      test: ["CMD", "curl", "-f", "-XGET", "http://localhost:8181/info"]
       interval: 1m30s
       timeout: 10s
       retries: 3
