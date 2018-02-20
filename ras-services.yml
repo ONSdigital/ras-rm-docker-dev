@@ -37,6 +37,11 @@ services:
       - RAS_COLLECTION_INSTRUMENT_SERVICE_PROTOCOL=http
     networks:
       - rasrmdockerdev_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${FRONTSTAGE_API_PORT}/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
   party-service:
     container_name: party-service
@@ -60,6 +65,11 @@ services:
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
     networks:
       - rasrmdockerdev_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${PARTY_PORT}/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
   secure-message-service:
     container_name: secure-message
@@ -77,6 +87,11 @@ services:
       - SERVICE_ID=${SERVICE_ID}
     networks:
       - rasrmdockerdev_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${SECURE_MESSAGE_PORT}/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
   frontstage:
     container_name: frontstage
@@ -130,6 +145,11 @@ services:
       -  PORT=8082
     networks:
       - rasrmdockerdev_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${FRONTSTAGE_PORT}/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
   collection-instrument-service:
     container_name: collection-instrument
@@ -152,6 +172,11 @@ services:
       - rasrmdockerdev_default
     external_links:
       - postgres:ras-postgres
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${COLL_INST_PORT}/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
   backstage:
     container_name: backstage
@@ -173,6 +198,11 @@ services:
       - USE_UAA=0
     networks:
       - rasrmdockerdev_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${BACKSTAGE_PORT}/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
   oauth2-service:
     container_name: oauth2-service
@@ -188,6 +218,11 @@ services:
       - postgres:ras-postgres
     networks:
       - rasrmdockerdev_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8040/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
   response-operations-ui:
     container_name: response-operations-ui
@@ -200,6 +235,11 @@ services:
       - backstage:backstage
     networks:
       - rasrmdockerdev_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
 networks:
    rasrmdockerdev_default:
