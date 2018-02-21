@@ -29,6 +29,12 @@ services:
      - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
      - SAMPLE_UNIT_DISTRIBUTION_DELAY_MILLI_SECONDS=1000
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8125/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   case:
     container_name: casesvc
     image: sdcplatform/casesvc
@@ -55,6 +61,12 @@ services:
      - COLLECTION_EXERCISE_SVC_CONNECTION_CONFIG_PORT=${COLLEX_PORT}
      - CASE_DISTRIBUTION_DELAY_MILLI_SECONDS=30000
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${CASE_DEBUG_PORT}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8171/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   action:
     container_name: action
     image: sdcplatform/actionsvc
@@ -84,6 +96,12 @@ services:
      - SURVEY_SVC_CONNECTION_CONFIG_HOST=${SURVEY_HOST}
      - SURVEY_SVC_CONNECTION-CONFIG_PORT=${SURVEY_PORT}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTION_DEBUG_PORT}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8151/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   actionexporter:
     container_name: actionexporter
     image: sdcplatform/actionexportersvc
@@ -108,6 +126,12 @@ services:
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTIONEXP_DEBUG_PORT}
      - FREEMARKER_DELAYFORNEWTEMPLATES=3600000
      - DATA_GRID_LOCK_TIME_TO_LIVE_SECONDS=45
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8141/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   iac:
     container_name: iac
     image: sdcplatform/iacsvc 
@@ -128,6 +152,12 @@ services:
      - CASE_SVC_CONNECTION_CONFIG_HOST=${CASE_HOST}
      - CASE_SVC_CONNECTION_CONFIG_PORT=${CASE_PORT}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${IAC_DEBUG_PORT}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8121/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   sdx-gateway:
     container_name: sdx-gateway
     image: sdcplatform/sdx-gateway
@@ -150,6 +180,12 @@ services:
      - SFTP_HOST=${SFTP_HOST}
      - SFTP_PORT=${SFTP_PORT}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5191
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8191/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   collectionexercise:
     container_name: collex
     image: sdcplatform/collectionexercisesvc 
@@ -183,6 +219,12 @@ services:
      - SCHEDULES_VALIDATION_SCHEDULE_DELAY_MILLI_SECONDS=1000
      - SCHEDULES_DISTRIBUTION_SCHEDULE_DELAY_MILLI_SECONDS=1000
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${COLLEX_DEBUG_PORT}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8145/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   survey:
     container_name: survey
     image: sdcplatform/surveysvc
@@ -194,6 +236,12 @@ services:
      - DATABASE_URL=postgres://postgres:postgres@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres?sslmode=disable
      - security_user_name=${SURVEY_USER}
      - security_user_password=${SURVEY_PASSWORD}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   notifygateway:
     container_name: notifygateway
     image: sdcplatform/notifygatewaysvc
@@ -209,6 +257,12 @@ services:
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${NOTIFY_GATEWAY_DEBUG_PORT}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-XGET", "http://localhost:8181/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
 networks:
   default:
     external:
