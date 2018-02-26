@@ -58,6 +58,6 @@ services:
   volumes:
     - ./uaa:/uaa
   environment:
-    - CATALINA_OPTS="-Dspring.profiles.active=postgres -DUAA_CONFIG_FILE=/uaa/uaa.yml"
+    - CATALINA_OPTS="-Dspring.profiles.active=postgresql"
   links:
    - ons-postgres:postgres
