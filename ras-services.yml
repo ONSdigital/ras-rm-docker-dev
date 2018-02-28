@@ -34,6 +34,8 @@ services:
       - RM_SURVEY_SERVICE_PROTOCOL=http
       - RAS_COLLECTION_INSTRUMENT_SERVICE_HOST=${COLL_INST_HOST}
       - RAS_COLLECTION_INSTRUMENT_SERVICE_PORT=${COLL_INST_PORT}
+      - JSON_SECRET_KEYS=${JSON_SECRET_KEYS_FRONTSTAGE}
+      - EQ_URL=https://eq-test/session?token=
       - RAS_COLLECTION_INSTRUMENT_SERVICE_PROTOCOL=http
     networks:
       - rasrmdockerdev_default
