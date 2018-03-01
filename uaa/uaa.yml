@@ -85,3 +85,35 @@ jwt:
       QH+xY/4h8tgL+eASz5QWhj8DItm8wYGI5lKJr8f36jk0JLPUXODyDAeN6ekXY9LI
       fudkijw0dnh28LJqbkFF5wLNtATzyCfzjp+czrPMn9uqLNKt/iVD
       -----END RSA PRIVATE KEY-----
+oauth:
+      client:
+        override: false
+      clients:
+          admin:
+            id: admin
+            secret: admin_secret
+            authorized-grant-types: client_credentials
+            scope: none
+            authorities: uaa.admin,clients.read,clients.write,clients.secret, scim.write, scim.read
+          login:
+            id: login
+            secret: login_secret
+            authorized-grant-types: client_credentials
+            authorities: scim.all,clients.all
+            resource-ids: oauth
+          ras_backstage:
+            id: ras_backstage
+            secret: password
+            authorized-grant-types: client_credentials, password
+            authorities: scim.userids, scim.me, scim.read, user_attributes, profile
+            resource-ids: oauth
+          secure_backstage:
+            id: ras_backstage
+            secret: password
+            authorized-grant-types: client_credentials
+            authorities: scim.all
+            resource-ids: oauth,clients
+
+scim:
+   users:
+      - uaa_user|password|scim.write,scim.read,scim.me, scim.userids
