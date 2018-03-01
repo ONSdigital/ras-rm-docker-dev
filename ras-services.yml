@@ -173,6 +173,8 @@ services:
       - CONFIG_YML=config/config-docker.yaml
       - ONS_CRYPTOKEY=somethingsecure
       - COLLECTION_EXERCISE_HOST=${COLLEX_HOST}
+      - CASE_SERVICE_HOST=${CASE_HOST}
+      - RM_SURVEY_SERVICE_HOST=${SURVEY_HOST}
     networks:
       - rasrmdockerdev_default
     external_links:
