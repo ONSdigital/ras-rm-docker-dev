@@ -93,7 +93,7 @@ oauth:
             id: admin
             secret: admin_secret
             authorized-grant-types: client_credentials
-            scope: none
+            scope: uaa.admin
             authorities: uaa.admin,clients.read,clients.write,clients.secret, scim.write, scim.read
           login:
             id: login
@@ -104,11 +104,12 @@ oauth:
           ras_backstage:
             id: ras_backstage
             secret: password
-            authorized-grant-types: client_credentials, password
+            authorized-grant-types: client_credentials,password
             authorities: scim.userids, scim.me, scim.read, user_attributes, profile
+            scope: scim.userids, scim.me, scim.read, user_attributes, profile
             resource-ids: oauth
-          secure_backstage:
-            id: ras_backstage
+          secure_messaging:
+            id: secure_messaging
             secret: password
             authorized-grant-types: client_credentials
             authorities: scim.all
@@ -116,4 +117,4 @@ oauth:
 
 scim:
    users:
-      - uaa_user|password|scim.write,scim.read,scim.me, scim.userids
+      - uaa_user|password|scim.write,scim.read,scim.me,scim.userids
