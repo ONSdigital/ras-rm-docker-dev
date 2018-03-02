@@ -206,9 +206,15 @@ services:
       - RM_IAC_SERVICE_HOST=${IAC_HOST}
       - RAS_SECURE_MESSAGING_SERVICE_HOST=${SECURE_MESSAGE_HOST}
       - RAS_SECURE_MESSAGING_SERVICE_PORT=${SECURE_MESSAGE_PORT}
-      - USE_UAA=0
+      - USE_UAA=1
+      - UAA_URL
+      - UAA_SERVICE_URL=http://uaa:8080
+      - UAA_CLIENT_ID=ras_backstage
+      - UAA_CLIENT_SECRET=password
     networks:
       - rasrmdockerdev_default
+    external_links:
+      - uaa
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${BACKSTAGE_PORT}/info"]
       interval: 1m30s
@@ -242,8 +248,12 @@ services:
       - 8085:8085
     environment:
       - BACKSTAGE_API_URL=http://${BACKSTAGE_HOST}:${BACKSTAGE_PORT}/backstage-api
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB = 3
     external_links:
       - backstage:backstage
+      - redis
     networks:
       - rasrmdockerdev_default
     healthcheck:

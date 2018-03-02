@@ -114,3 +114,6 @@ When ras/rm is all running it takes a lot of memory.  Click on the docker icon i
 then click on 'preferences', then go to the 'advanced' tab.  The default memory allocated to Docker is 2gb.
 Bumping that up to 8gb and the number of cores to 4 should make the service run much smoother. Note: These aren't
 hard and fast numbers, this is just what worked for people.
+
+### UAA
+A default user (uaa_user/password) is added automatically to the UAA and this user can be used to sign into response-operations-ui

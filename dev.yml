@@ -50,3 +50,14 @@ services:
    - PGADMIN_DEFAULT_PASSWORD=secret
   links:
    - ons-postgres:postgres
+ uaa:
+  container_name: uaa
+  image: sdcplatform/uaa:0.0.1
+  ports:
+    - "9080:8080"
+  volumes:
+    - ./uaa:/uaa
+  environment:
+    - CATALINA_OPTS="-Dspring.profiles.active=postgresql"
+  links:
+   - ons-postgres:postgres
