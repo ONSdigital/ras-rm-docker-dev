@@ -108,7 +108,7 @@ oauth:
             authorities: scim.userids, scim.me, scim.read
             scope: scim.userids, scim.me, scim.read
             resource-ids: oauth
-          secure_messaging:
+          secure_message:
             id: secure_message
             secret: password
             authorized-grant-types: client_credentials
