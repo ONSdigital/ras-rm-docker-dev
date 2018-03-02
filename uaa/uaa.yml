@@ -109,7 +109,7 @@ oauth:
             scope: scim.userids, scim.me, scim.read
             resource-ids: oauth
           secure_messaging:
-            id: secure_messaging
+            id: secure_message
             secret: password
             authorized-grant-types: client_credentials
             authorities: scim.userids, scim.me, scim.read
