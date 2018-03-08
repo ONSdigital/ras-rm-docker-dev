@@ -6,3 +6,7 @@ down:
 
 pull:
 	docker-compose -f dev.yml -f ras-services.yml -f rm-services.yml pull ${SERVICE}
+
+logs:
+	docker-compose -f dev.yml -f ras-services.yml -f rm-services.yml logs --follow
+
