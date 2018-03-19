@@ -171,7 +171,7 @@ services:
       - rasrmdockerdev_default
     external_links:
       - postgres:ras-postgres
-    healthcheck:docker
+    healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${COLL_INST_PORT}/info"]
       interval: 1m30s
       timeout: 10s
