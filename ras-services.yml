@@ -157,7 +157,8 @@ services:
       - "${COLL_INST_PORT}:${COLL_INST_PORT}"
     environment:
       - DATABASE_URI=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
-      - RABBITMQ_AMQP=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}
+      - RABBITMQ_AMQP_SURVEY_RESPONSE=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}
+      - RABBITMQ_AMQP_COLLECTION_INSTRUMENT=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
       - JSON_SECRET_KEYS=${JSON_SECRET_KEYS}
@@ -170,7 +171,7 @@ services:
       - rasrmdockerdev_default
     external_links:
       - postgres:ras-postgres
-    healthcheck:
+    healthcheck:docker
       test: ["CMD", "curl", "-f", "http://localhost:${COLL_INST_PORT}/info"]
       interval: 1m30s
       timeout: 10s
