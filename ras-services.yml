@@ -166,6 +166,8 @@ services:
       - COLLECTION_EXERCISE_HOST=${COLLEX_HOST}
       - CASE_SERVICE_HOST=${CASE_HOST}
       - RM_SURVEY_SERVICE_HOST=${SURVEY_HOST}
+      - RABBITMQ_AMQP_SURVEY_RESPONSE=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}
+      - RABBITMQ_AMQP_COLLECTION_INSTRUMENT=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}
     networks:
       - rasrmdockerdev_default
     external_links:
