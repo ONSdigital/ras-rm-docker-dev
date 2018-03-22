@@ -29,6 +29,10 @@ services:
      - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
      - SAMPLE_UNIT_DISTRIBUTION_DELAY_MILLI_SECONDS=1000
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT}
+     - LIQUIBASE_USER=${POSTGRES_USERNAME}
+     - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8125/info"]
       interval: 1m30s
@@ -61,6 +65,10 @@ services:
      - COLLECTION_EXERCISE_SVC_CONNECTION_CONFIG_PORT=${COLLEX_PORT}
      - CASE_DISTRIBUTION_DELAY_MILLI_SECONDS=30000
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${CASE_DEBUG_PORT}
+     - LIQUIBASE_USER=${POSTGRES_USERNAME}
+     - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8171/info"]
       interval: 1m30s
@@ -96,6 +104,10 @@ services:
      - SURVEY_SVC_CONNECTION_CONFIG_HOST=${SURVEY_HOST}
      - SURVEY_SVC_CONNECTION-CONFIG_PORT=${SURVEY_PORT}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTION_DEBUG_PORT}
+     - LIQUIBASE_USER=${POSTGRES_USERNAME}
+     - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8151/info"]
       interval: 1m30s
@@ -126,6 +138,10 @@ services:
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTIONEXP_DEBUG_PORT}
      - FREEMARKER_DELAYFORNEWTEMPLATES=3600000
      - DATA_GRID_LOCK_TIME_TO_LIVE_SECONDS=45
+     - LIQUIBASE_USER=${POSTGRES_USERNAME}
+     - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8141/info"]
       interval: 1m30s
@@ -152,6 +168,10 @@ services:
      - CASE_SVC_CONNECTION_CONFIG_HOST=${CASE_HOST}
      - CASE_SVC_CONNECTION_CONFIG_PORT=${CASE_PORT}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${IAC_DEBUG_PORT}
+     - LIQUIBASE_USER=${POSTGRES_USERNAME}
+     - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8121/info"]
       interval: 1m30s
@@ -180,6 +200,10 @@ services:
      - SFTP_HOST=${SFTP_HOST}
      - SFTP_PORT=${SFTP_PORT}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5191
+     - LIQUIBASE_USER=${POSTGRES_USERNAME}
+     - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8191/info"]
       interval: 1m30s
@@ -219,6 +243,10 @@ services:
      - SCHEDULES_VALIDATION_SCHEDULE_DELAY_MILLI_SECONDS=1000
      - SCHEDULES_DISTRIBUTION_SCHEDULE_DELAY_MILLI_SECONDS=1000
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${COLLEX_DEBUG_PORT}
+     - LIQUIBASE_USER=${POSTGRES_USERNAME}
+     - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8145/info"]
       interval: 1m30s
@@ -257,6 +285,10 @@ services:
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${NOTIFY_GATEWAY_DEBUG_PORT}
+     - LIQUIBASE_USER=${POSTGRES_USERNAME}
+     - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "-XGET", "http://localhost:8181/info"]
       interval: 1m30s
