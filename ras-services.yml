@@ -39,6 +39,7 @@ services:
       - RAS_COLLECTION_INSTRUMENT_SERVICE_PROTOCOL=http
     networks:
       - rasrmdockerdev_default
+    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${FRONTSTAGE_API_PORT}/info"]
       interval: 1m30s
@@ -66,6 +67,7 @@ services:
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
     networks:
       - rasrmdockerdev_default
+    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${PARTY_PORT}/info"]
       interval: 1m30s
@@ -96,6 +98,7 @@ services:
       - CLIENT_SECRET=password
     networks:
       - rasrmdockerdev_default
+    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${SECURE_MESSAGE_PORT}/info"]
       interval: 1m30s
@@ -144,6 +147,7 @@ services:
       -  PORT=8082
     networks:
       - rasrmdockerdev_default
+    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${FRONTSTAGE_PORT}/info"]
       interval: 1m30s
@@ -171,6 +175,7 @@ services:
       - rasrmdockerdev_default
     external_links:
       - postgres:ras-postgres
+    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${COLL_INST_PORT}/info"]
       interval: 1m30s
@@ -205,6 +210,7 @@ services:
       - rasrmdockerdev_default
     external_links:
       - uaa
+    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${BACKSTAGE_PORT}/info"]
       interval: 1m30s
@@ -225,6 +231,7 @@ services:
       - postgres:ras-postgres
     networks:
       - rasrmdockerdev_default
+    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8040/info"]
       interval: 1m30s
@@ -246,6 +253,7 @@ services:
       - redis
     networks:
       - rasrmdockerdev_default
+    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8085/info"]
       interval: 1m30s
