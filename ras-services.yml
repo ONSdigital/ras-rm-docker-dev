@@ -245,6 +245,9 @@ services:
       - 8085:8085
     environment:
       - BACKSTAGE_API_URL=http://${BACKSTAGE_HOST}:${BACKSTAGE_PORT}/backstage-api
+      - SURVEY_URL=http://${SURVEY_HOST}:${SURVEY_PORT}
+      - SURVEY_USERNAME=admin
+      - SURVEY_PASSWORD=secret
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_DB = 3
