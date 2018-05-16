@@ -244,7 +244,7 @@ services:
       - 8085:8085
     environment:
       - BACKSTAGE_API_URL=http://${BACKSTAGE_HOST}:${BACKSTAGE_PORT}/backstage-api
-      - CASE_URL=http://${CASE_HOST}:%{CASE_PORT}
+      - CASE_URL=http://${CASE_HOST}:${CASE_PORT}
       - CASE_USERNAME=${CASE_USERNAME}
       - CASE_PASSWORD=${CASE_PASSWORD}
       - COLLECTION_EXERCISE_URL=http://${COLLEX_HOST}:${COLLEX_PORT}
