@@ -8,6 +8,7 @@ sqlalchemy = "*"
 "psycopg2-binary" = "*"
 
 [dev-packages]
+retrying = "*"
 
 [requires]
 python_version = "3.6"
