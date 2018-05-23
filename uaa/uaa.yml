@@ -101,8 +101,8 @@ oauth:
             authorized-grant-types: client_credentials
             authorities: scim.all,clients.all
             resource-ids: oauth
-          ras_backstage:
-            id: ras_backstage
+          response_operations:
+            id: response_operations
             secret: password
             authorized-grant-types: client_credentials,password
             authorities: scim.userids, scim.me, scim.read
