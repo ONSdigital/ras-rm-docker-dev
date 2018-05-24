@@ -157,7 +157,7 @@ services:
       - RM_IAC_SERVICE_HOST=${IAC_HOST}
       - USE_UAA=1
       - UAA_SERVICE_URL=http://${UAA_HOST}:${UAA_PORT}
-      - UAA_CLIENT_ID=ras_backstage
+      - UAA_CLIENT_ID=response_operations
       - UAA_CLIENT_SECRET=password
     networks:
       - rasrmdockerdev_default
@@ -225,7 +225,7 @@ services:
       - SECURE_MESSAGE_URL=http://${SECURE_MESSAGE_HOST}:${SECURE_MESSAGE_PORT}
       - RAS_SECURE_MESSAGING_JWT_SECRET=${JWT_SECRET}
       - UAA_SERVICE_URL=http://${UAA_HOST}:${UAA_PORT}
-      - UAA_CLIENT_ID=ras_backstage
+      - UAA_CLIENT_ID=response_operations
       - UAA_CLIENT_SECRET=password
     external_links:
       - backstage:backstage
