@@ -322,6 +322,26 @@ services:
       timeout: 10s
       retries: 3
 
+  respondent-home-ui:
+    container_name: respondent-home-ui
+    image: sdcplatform/respondent-home-ui
+    ports:
+     - "${RESPONDENT_HOME_UI_PORT}:${RESPONDENT_HOME_UI_PORT}"
+    environment:
+      - RESPONDENT_HOME_ANALYTICS_ACCOUNT=
+      - RESPONDENT_HOME_EQ_HOST=
+      - RESPONDENT_HOME_EQ_PORT=
+      - RESPONDENT_HOME_EQ_PRIVATE_KEY= 
+      - RESPONDENT_HOME_EQ_PROTOCOL=
+      - RESPONDENT_HOME_EQ_PUBLIC_KEY=
+      - RESPONDENT_HOME_IAC_SERVICE_HOST=${IAC_HOST}
+      - RESPONDENT_HOME_IAC_SERVICE_PASSWORD=${SECURITY_USER_PASSWORD}
+      - RESPONDENT_HOME_IAC_SERVICE_PORT=${IAC_PORT}
+      - RESPONDENT_HOME_IAC_SERVICE_PROTOCOL=
+      - RESPONDENT_HOME_IAC_SERVICE_USER=${SECURITY_USER_NAME}
+      - RESPONDENT_HOME_LOCALE=en
+    restart: always
+
 networks:
   default:
     external:
