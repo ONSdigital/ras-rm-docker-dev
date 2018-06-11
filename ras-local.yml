@@ -211,7 +211,7 @@ services:
     container_name: response-operations-ui
     build: ${RAS_HOME}/response-operations-ui
     volumes:
-      - ${RAS_HOME}/response-operations-ui:/app
+      - ${RAS_HOME}/response-operations-ui:/response-operations-ui
     ports:
       - 8085:8085
     environment:
