@@ -53,6 +53,11 @@ Development using this repo can be done by doing the following:
 1. Finally, start the services excluding the service(s) you are running locally
 1. Run the service(s) locally
 
+### Running Python services mounted as a volume (allows hot-reloading)
+1. Stop all the services `make down`
+1. Run `make local` to run all the Python services, or `docker-compose -f ras-local.yml up -d name-of-service` to run a single service
+2. Run `make up` to start all the other services using the standard docker images
+
 ### pgAdmin 4
 1. Start all the services `make up`
 1. Navigate to `localhost:80` in your browser
