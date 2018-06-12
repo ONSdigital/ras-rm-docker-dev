@@ -1,0 +1,27 @@
+@startuml
+skinparam sequence {
+    ParticipantBackgroundColor HoneyDew
+    ActorBackgroundColor HoneyDew
+}
+
+actor User
+participant "Collection Exercise"
+participant Sample
+participant Party
+participant Case
+
+User -> "Collection Exercise" :  POST /collectionexerciseexecution [[https://github.com/ONSdigital/rm-collection-exercise-service/blob/master/src/main/java/uk/gov/ons/ctp/response/collection/exercise/endpoint/CollectionExerciseExecutionEndpoint.java#L39 *]]
+"Collection Exercise" -> Sample :  POST /samples/sampleunitrequests [[https://github.com/ONSdigital/rm-sample-service/blob/master/src/main/java/uk/gov/ons/ctp/response/sample/endpoint/SampleEndpoint.java#L81 *]]
+Sample --> "Collection Exercise" : 201
+"Collection Exercise" --> Party :  PUT /party-api/v1/businesses/sample/link/<sampleSummaryId> [[https://github.com/ONSdigital/ras-party/blob/master/ras_party/views/business_view.py#L69 *]]
+Party --> "Collection Exercise" : 200
+"Collection Exercise" --> User : 201
+Sample ->> "Collection Exercise" :  sample_outbound_exchange(Sample.SampleDelivery) [[https://github.com/ONSdigital/rm-collection-exercise-service/blob/master/src/main/java/uk/gov/ons/ctp/response/collection/exercise/message/impl/SampleUnitReceiverImpl.java#L28 *]]
+"Collection Exercise" ->> Case :  collection-inbound/outbound-exchange(Case.CaseDelivery) [[https://github.com/ONSdigital/rm-case-service/blob/master/src/main/java/uk/gov/ons/ctp/response/casesvc/message/impl/CaseCreationReceiverImpl.java#L24 *]]
+note right
+     Collection Exercise is publishing to a different
+     exchange to the one Case is listening on. It 
+     works because the queue names are the same
+end note
+Case -> Action : case-outbound-exchange(Case.LifecycleEvents) [[https://github.com/ONSdigital/rm-action-service/blob/master/src/main/java/uk/gov/ons/ctp/response/action/message/impl/CaseNotificationReceiverImpl.java#L26 *]]
+@enduml

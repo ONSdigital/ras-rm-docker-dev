@@ -3,3 +3,8 @@
 
 # IDE
 .idea/
+
+plantuml.jar
+
+# Generated diagrams
+diagrams/*.svg
