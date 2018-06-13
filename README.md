@@ -53,6 +53,11 @@ Development using this repo can be done by doing the following:
 1. Finally, start the services excluding the service(s) you are running locally
 1. Run the service(s) locally
 
+### Running Python services mounted as a volume (allows hot-reloading)
+1. Bring up all the services `make up`
+2. Make sure that the environment variable `RAS_HOME` has been set, and points to the root of your RAS project folders e.g. `ras-frontstage` would be found at `$RAS_HOME/ras-frontstage`
+3. Run `make local` to run all the Python services, or `docker-compose -f ras-local.yml up -d name-of-service` to run a single service
+
 ### pgAdmin 4
 1. Start all the services `make up`
 1. Navigate to `localhost:80` in your browser

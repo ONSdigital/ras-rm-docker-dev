@@ -3,8 +3,11 @@ up:
 	pipenv install --dev
 	pipenv run python setup_database.py
 
+local:
+	docker-compose -f ras-local.yml up -d ${SERVICE}
+
 down:
-	docker-compose -f dev.yml -f ras-services.yml -f rm-services.yml down
+	docker-compose -f dev.yml -f ras-services.yml -f rm-services.yml -f ras-local.yml down
 
 pull:
 	docker-compose -f dev.yml -f ras-services.yml -f rm-services.yml pull ${SERVICE}
