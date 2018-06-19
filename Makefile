@@ -10,7 +10,7 @@ up-local:
 	docker-compose -f ras-local.yml up -d ${SERVICE}
 
 down-local:
-	docker-compose -f ras-local.yml down
+	docker-compose -f ras-local.yml down -d ${SERVICE}
 
 pull:
 	docker-compose -f dev.yml -f ras-services.yml -f rm-services.yml pull ${SERVICE}
