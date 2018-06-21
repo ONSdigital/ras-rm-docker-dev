@@ -5,6 +5,7 @@ A combined repository for unifying approach to running RAS and RM in Docker
 1. Create a docker hub account
 1. Ask to become a team member of sdcplatformras
 1. Run `docker login` in a terminal and use your docker hub account
+1. Run `docker network create rasrmdockerdev_default` to create the docker network
 
 ## Quickstart
 ![make up](https://media.giphy.com/media/xULW8lyhMJjzyO33sA/giphy.gif)
