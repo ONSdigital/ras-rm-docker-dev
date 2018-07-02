@@ -33,6 +33,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - LOGGING_LEVEL_uk.gov.ons.ctp.response.sample.scheduled.distribution=WARN
+     - LOGGING_LEVEL_uk.gov.ons.ctp.common.distributed=INFO
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8125/info"]
