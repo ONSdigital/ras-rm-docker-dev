@@ -159,6 +159,22 @@ services:
       timeout: 10s
       retries: 3
 
+  respondent-home-ui:
+    container_name: respondent-home-ui
+    image: sdcplatform/respondent-home-ui:aiohttp-app
+    ports:
+      - 9092:9092
+    environment:
+      - JSON_SECRET_KEYS=${JSON_SECRET_KEYS_RH}
+    networks:
+      - rasrmdockerdev_default
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9092/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   response-operations-ui:
     container_name: response-operations-ui
     image: sdcplatform/response-operations-ui
