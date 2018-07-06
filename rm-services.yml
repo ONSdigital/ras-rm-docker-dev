@@ -28,7 +28,7 @@ services:
      - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${PARTY_USER}
      - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
      - SAMPLE_UNIT_DISTRIBUTION_DELAY_MILLI_SECONDS=1000
-     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT}
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT} -Dlogging.level.uk.gov.ons.ctp.response.sample.scheduled.distribution=WARN -Dlogging.level.uk.gov.ons.ctp.common.distributed=INFO
      - LIQUIBASE_USER=${POSTGRES_USERNAME}
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
