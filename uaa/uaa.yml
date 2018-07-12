@@ -118,4 +118,4 @@ oauth:
 
 scim:
    users:
-      - uaa_user|password|scim.me,scim.userids
+      - uaa_user|password|ons@ons|ONS|User|scim.me,scim.userids
