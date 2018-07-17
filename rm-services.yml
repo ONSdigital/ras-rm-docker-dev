@@ -105,6 +105,8 @@ services:
      - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
      - SURVEY_SVC_CONNECTION_CONFIG_HOST=${SURVEY_HOST}
      - SURVEY_SVC_CONNECTION-CONFIG_PORT=${SURVEY_PORT}
+     - SAMPLE_SVC_CONNECTION_CONFIG_HOST=${SAMPLE_HOST}
+     - SAMPLE_SVC_CONNECTION_CONFIG_PORT=${SAMPLE_PORT}
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTION_DEBUG_PORT} -Dlogging.level.uk.gov.ons.ctp.response.action.scheduled.plan.PlanScheduler=WARN -Dlogging.level.uk.gov.ons.ctp.response.action.service.impl.ActionPlanJobServiceImpl=WARN
      - LIQUIBASE_USER=${POSTGRES_USERNAME}
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
