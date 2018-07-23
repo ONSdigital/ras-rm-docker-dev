@@ -161,7 +161,7 @@ services:
 
   respondent-home-ui:
     container_name: respondent-home-ui
-    image: sdcplatform/respondent-home-ui:aiohttp-app
+    image: sdcplatform/respondent-home-ui
     ports:
       - 9092:9092
     environment:
