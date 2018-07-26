@@ -172,6 +172,44 @@ services:
       timeout: 10s
       retries: 3
 
+  respondent-home-ui:
+    container_name: respondent-home-ui
+    build: ${RAS_HOME}/respondent-home-ui
+    volumes:
+      - ${RAS_HOME}/respondent-home-ui:/app
+    ports:
+      - 9092:9092
+    environment:
+      - APP_SETTINGS=DevelopmentConfig
+      - ACCOUNT_SERVICE_URL=http://localhost:9092
+      - CASE_URL=http://${CASE_HOST}:${CASE_PORT}
+      - CASE_USERNAME=${CASE_USERNAME}
+      - CASE_PASSWORD=${CASE_PASSWORD}
+      - COLLECTION_EXERCISE_URL=http://${COLLEX_HOST}:${COLLEX_PORT}
+      - COLLECTION_EXERCISE_USERNAME=${COLLECTION_EXERCISE_USERNAME}
+      - COLLECTION_EXERCISE_PASSWORD=${COLLECTION_EXERCISE_PASSWORD}
+      - COLLECTION_INSTRUMENT_URL=http://${COLL_INST_HOST}:${COLL_INST_PORT}
+      - COLLECTION_INSTRUMENT_USERNAME=${COLL_INST_USERNAME}
+      - COLLECTION_INSTRUMENT_PASSWORD=${COLL_INST_PASSWORD}
+      - IAC_URL=http://${IAC_HOST}:${IAC_PORT}
+      - IAC_USERNAME=${IAC_USERNAME}
+      - IAC_PASSWORD=${IAC_PASSWORD}
+      - JSON_SECRET_KEYS=${JSON_SECRET_KEYS_RH}
+      - SAMPLE_URL=http://${SAMPLE_HOST}:${SAMPLE_PORT}
+      - SAMPLE_USERNAME=${SAMPLE_USERNAME}
+      - SAMPLE_PASSWORD=${SAMPLE_PASSWORD}
+      - SURVEY_URL=http://${SURVEY_HOST}:${SURVEY_PORT}
+      - SURVEY_USERNAME=${SECURITY_USER_NAME}
+      - SURVEY_PASSWORD=${SECURITY_USER_PASSWORD}
+    networks:
+      - rasrmdockerdev_default
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9092/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
   response-operations-ui:
     container_name: response-operations-ui
     build: ${RAS_HOME}/response-operations-ui
