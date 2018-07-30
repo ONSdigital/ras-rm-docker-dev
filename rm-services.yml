@@ -147,6 +147,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - LOGGING_LEVEL_uk.gov.ons.ctp.response.action.export.scheduled=WARN
+     - EXPORT_SCHEDULE_CRON_EXPRESSION=* * * * * *
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8141/info"]
@@ -156,7 +158,7 @@ services:
 
   iac:
     container_name: iac
-    image: sdcplatform/iacsvc 
+    image: sdcplatform/iacsvc
     ports:
      - "${IAC_PORT}:8121"
      - "${IAC_DEBUG_PORT}:5121"
@@ -220,7 +222,7 @@ services:
 
   collectionexercise:
     container_name: collex
-    image: sdcplatform/collectionexercisesvc 
+    image: sdcplatform/collectionexercisesvc
     ports:
      - "${COLLEX_PORT}:8145"
      - "${COLLEX_DEBUG_PORT}:5145"
