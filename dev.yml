@@ -25,7 +25,7 @@ services:
         - ~/Documents/sftp:/home/centos/Documents/sftp
     ports:
         - "${EX_SFTP_PORT}:22"
-    command: centos:JLibV2&XD,:1001
+    command: centos:JLibV2&XD,:2000
  cfdatabasetool:
   container_name: cfdatabasetool
   image: sdcplatform/cfdatabasetool
