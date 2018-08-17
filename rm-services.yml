@@ -14,6 +14,7 @@ services:
      - sftp
      - party
     environment:
+     - SECURITY_BASIC_ENABLED=true
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
      - liquibase_url=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - RABBITMQ_PORT=${RABBIT_PORT}
@@ -52,6 +53,7 @@ services:
      - rabbitmq
      - redis
     environment:
+     - SECURITY_BASIC_ENABLED=true
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - RABBITMQ_HOST=${RABBIT_HOST}
@@ -89,6 +91,7 @@ services:
      - rabbitmq
      - redis
     environment:
+     - SECURITY_BASIC_ENABLED=true
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - RABBITMQ_HOST=${RABBIT_HOST}
@@ -132,6 +135,7 @@ services:
      - redis
      - sftp
     environment:
+     - SECURITY_BASIC_ENABLED=true
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - RABBITMQ_HOST=${RABBIT_HOST}
@@ -168,6 +172,7 @@ services:
      - rabbitmq
      - redis
     environment:
+     - SECURITY_BASIC_ENABLED=true
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - RABBITMQ_HOST=${RABBIT_HOST}
@@ -200,6 +205,7 @@ services:
      - redis
      - sftp
     environment:
+     - SECURITY_BASIC_ENABLED=true
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - RABBITMQ_HOST=${RABBIT_HOST}
@@ -232,6 +238,7 @@ services:
      - rabbitmq
      - redis
     environment:
+     - SECURITY_BASIC_ENABLED=true
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}?sslmode=disable
      - LIQUIBASE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
      - RABBITMQ_HOST=${RABBIT_HOST}
@@ -294,6 +301,7 @@ services:
      - rabbitmq
      - postgres
     environment:
+     - SECURITY_BASIC_ENABLED=true
      - RABBITMQ_HOST=${RABBIT_HOST}
      - RABBITMQ_PORT=${RABBIT_PORT}
      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_HOST}
