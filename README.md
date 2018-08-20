@@ -7,6 +7,17 @@ A combined repository for unifying approach to running RAS and RM in Docker
 1. Run `docker login` in a terminal and use your docker hub account
 1. Run `docker network create rasrmdockerdev_default` to create the docker network
 
+## Setup
+Based on python 3.6
+
+Use [Pyenv](https://github.com/pyenv/pyenv) to manage installed Python versions
+
+[Pipenv](https://docs.pipenv.org/) is required locally for running setup scripts
+
+```bash
+pip install -U pipenv
+```
+
 ## Quickstart
 ![make up](https://media.giphy.com/media/xULW8lyhMJjzyO33sA/giphy.gif)
 ```
