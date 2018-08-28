@@ -56,3 +56,8 @@ services:
     - CATALINA_OPTS="-Dspring.profiles.active=postgresql"
   links:
    - ons-postgres:postgres
+ rasrm-ops:
+  container_name: rasrm-ops
+  image: sdcplatform/rasrm-ops
+  ports:
+  - "8003:80"
