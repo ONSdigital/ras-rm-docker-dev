@@ -34,6 +34,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_ZIPKIN_ENABLE=true
+     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8125/info"]
@@ -72,6 +74,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_ZIPKIN_ENABLE=true
+     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8171/info"]
@@ -115,6 +119,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_ZIPKIN_ENABLE=true
+     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8151/info"]
@@ -153,6 +159,8 @@ services:
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
      - LOGGING_LEVEL_uk.gov.ons.ctp.response.action.export.scheduled=WARN
      - EXPORT_SCHEDULE_CRON_EXPRESSION=* * * * * *
+     - SPRING_ZIPKIN_ENABLE=true
+     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8141/info"]
@@ -185,6 +193,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_ZIPKIN_ENABLE=true
+     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8121/info"]
@@ -219,6 +229,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_ZIPKIN_ENABLE=true
+     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8191/info"]
@@ -266,6 +278,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_ZIPKIN_ENABLE=true
+     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8145/info"]
@@ -284,6 +298,8 @@ services:
      - DATABASE_URL=postgres://postgres:postgres@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres?sslmode=disable
      - security_user_name=${SURVEY_USER}
      - security_user_password=${SURVEY_PASSWORD}
+     - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
+     - ZIPKIN_SAMPLE_RATE=1.0
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/info"]
@@ -311,6 +327,8 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+     - SPRING_ZIPKIN_ENABLE=true
+     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "-XGET", "http://localhost:8181/info"]
@@ -329,6 +347,8 @@ services:
       - SQLALCHEMY_DATABASE_URI=postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
+      - SPRING_ZIPKIN_ENABLE=true
+      - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "-XGET", "http://localhost:8182/info"]

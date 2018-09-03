@@ -23,6 +23,8 @@ services:
       - RAS_OAUTH_SERVICE_HOST=${OAUTH_HOST}
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
+      - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
+      - ZIPKIN_SAMPLE_RATE=100
     networks:
       - rasrmdockerdev_default
     restart: always
@@ -57,6 +59,8 @@ services:
       - UAA_URL=http://${UAA_HOST}:${UAA_PORT}
       - CLIENT_ID=secure_message
       - CLIENT_SECRET=password
+      - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
+      - ZIPKIN_SAMPLE_RATE=100
     networks:
       - rasrmdockerdev_default
     restart: always
@@ -107,6 +111,8 @@ services:
       - SURVEY_URL=http://${SURVEY_HOST}:${SURVEY_PORT}
       - SURVEY_USERNAME=${SECURITY_USER_NAME}
       - SURVEY_PASSWORD=${SECURITY_USER_PASSWORD}
+      - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
+      - ZIPKIN_SAMPLE_RATE=100
     networks:
       - rasrmdockerdev_default
     restart: always
@@ -138,6 +144,8 @@ services:
       - RM_SURVEY_SERVICE_HOST=${SURVEY_HOST}
       - RABBITMQ_AMQP_SURVEY_RESPONSE=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}
       - RABBITMQ_AMQP_COLLECTION_INSTRUMENT=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}
+      - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
+      - ZIPKIN_SAMPLE_RATE=100
     networks:
       - rasrmdockerdev_default
     external_links:
@@ -250,6 +258,8 @@ services:
       - UAA_SERVICE_URL=http://${UAA_HOST}:${UAA_PORT}
       - UAA_CLIENT_ID=response_operations
       - UAA_CLIENT_SECRET=password
+      - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
+      - ZIPKIN_SAMPLE_RATE=100
     external_links:
       - redis
     networks:
