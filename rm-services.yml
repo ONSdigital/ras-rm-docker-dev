@@ -300,6 +300,7 @@ services:
      - security_user_password=${SURVEY_PASSWORD}
      - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
      - ZIPKIN_SAMPLE_RATE=1.0
+     - ZIPKIN_DISABLE=False
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/info"]
