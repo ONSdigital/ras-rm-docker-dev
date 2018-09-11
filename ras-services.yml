@@ -12,8 +12,8 @@ services:
     environment:
       - DATABASE_URI=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
       - RAS_OAUTH_SERVICE_PORT=${OAUTH_PORT}
-      - RAS_OAUTH_CLIENT_ID=ons@ons.gov
-      - RAS_OAUTH_CLIENT_SECRET=password
+      - RAS_OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
+      - RAS_OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
       - RAS_CASE_SERVICE_HOST=${CASE_HOST}
       - RAS_COLLEX_SERVICE_HOST=${COLLEX_HOST}
       - RAS_SURVEY_SERVICE_HOST=${SURVEY_HOST}
@@ -161,6 +161,30 @@ services:
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8040/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  auth-service:
+    container_name: auth-service
+    image: sdcplatform/ras-rm-auth-service
+    ports:
+      - 8041:8041
+    tty: true
+    environment:
+      - APP_SETTINGS=DevelopmentConfig
+      - DATABASE_URI=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
+      - SECURITY_USER_NAME=${OAUTH_CLIENT_ID}
+      - SECURITY_USER_PASSWORD=${OAUTH_CLIENT_SECRET}
+      - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
+      - ZIPKIN_SAMPLE_RATE=100
+    external_links:
+      - postgres:ras-postgres
+    networks:
+      - rasrmdockerdev_default
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8041/info"]
       interval: 1m30s
       timeout: 10s
       retries: 3
