@@ -108,6 +108,13 @@ oauth:
             authorities: scim.userids, scim.me, scim.read
             scope: scim.userids, scim.me, scim.read
             resource-ids: oauth
+          response_operations_social:
+            id: response_operations_social
+            secret: password
+            authorized-grant-types: client_credentials,password
+            authorities: scim.userids, scim.me, scim.read
+            scope: scim.userids, scim.me, scim.read
+            resource-ids: oauth
           secure_message:
             id: secure_message
             secret: password
