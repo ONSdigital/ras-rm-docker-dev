@@ -309,7 +309,7 @@ services:
       - EXPLAIN_TEMPLATE_LOADING=True
       - RAS_SECURE_MESSAGING_JWT_SECRET=${JWT_SECRET}
       - UAA_SERVICE_URL=http://${UAA_HOST}:${UAA_PORT}
-      - UAA_CLIENT_ID=response_operations
+      - UAA_CLIENT_ID=response_operations_social
       - UAA_CLIENT_SECRET=password
       - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
       - ZIPKIN_SAMPLE_RATE=100
