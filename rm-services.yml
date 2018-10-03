@@ -158,7 +158,7 @@ services:
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
      - LOGGING_LEVEL_uk.gov.ons.ctp.response.action.export.scheduled=WARN
-     - EXPORT_SCHEDULE_CRON_EXPRESSION=* * * * * *
+     - EXPORT_SCHEDULE_CRON_EXPRESSION=*/30 * * * * *
      - SPRING_ZIPKIN_ENABLED=true
      - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     restart: always
