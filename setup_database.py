@@ -23,7 +23,7 @@ if __name__ == '__main__':
     conn = retry_connection(engine)
 
     print('Dropping pgcrypto')
-    conn.execute('DROP EXTENSION IF EXISTS pgcrypto;')
+    conn.execute('DROP EXTENSION IF EXISTS pgcrypto CASCADE;')
     print('Creating pgcrypto')
     conn.execute('CREATE EXTENSION pgcrypto WITH SCHEMA public;')
 
