@@ -209,12 +209,16 @@ services:
       - IAC_USERNAME=${IAC_USERNAME}
       - IAC_PASSWORD=${IAC_PASSWORD}
       - JSON_SECRET_KEYS=${JSON_SECRET_KEYS_RH}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
       - SAMPLE_URL=http://${SAMPLE_HOST}:${SAMPLE_PORT}
       - SAMPLE_USERNAME=${SAMPLE_USERNAME}
       - SAMPLE_PASSWORD=${SAMPLE_PASSWORD}
       - SURVEY_URL=http://${SURVEY_HOST}:${SURVEY_PORT}
       - SURVEY_USERNAME=${SECURITY_USER_NAME}
       - SURVEY_PASSWORD=${SECURITY_USER_PASSWORD}
+    links:
+      - redis
     networks:
       - rasrmdockerdev_default
     restart: always
