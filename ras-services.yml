@@ -22,6 +22,7 @@ services:
       - RABBITMQ_AMQP_COLLECTION_INSTRUMENT=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}
       - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
       - ZIPKIN_SAMPLE_RATE=100
+      - GUNICORN_WORKERS=2
     networks:
       - rasrmdockerdev_default
     external_links:
