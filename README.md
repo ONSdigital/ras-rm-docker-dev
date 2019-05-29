@@ -6,6 +6,7 @@ A combined repository for unifying approach to running RAS and RM in Docker
 1. Ask to become a team member of sdcplatform
 1. Run `docker login` in a terminal and use your docker hub account
 1. Run `docker network create rasrmdockerdev_default` to create the docker network
+1. Have at least 16GiB of memory allocated to Docker
 
 ## Setup
 Based on python 3.6
