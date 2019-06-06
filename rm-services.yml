@@ -357,6 +357,23 @@ services:
       timeout: 10s
       retries: 3
 
+  reporting:
+    container_name: reporting
+    image: sdcplatform/rm-reporting
+    ports:
+     - "${REPORTING_PORT}:${REPORTING_PORT}"
+    external_links:
+      - postgres
+    environment:
+      - DATABASE_URI=postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
+      - SECURITY_USER_NAME=${SECURITY_USER_NAME}
+      - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-XGET", "http://localhost:8084/info"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 networks:
   default:
     external:
