@@ -9,10 +9,10 @@ check-env:
 ifndef RASRM_HOME
 	$(error RASRM_HOME environment variable is not set.)
 endif
-	@ printf "\n[${YELLOW} RASRM_HOME set to ${RASRM_HOME} ${NO_COLOR}]\n"
+	@ printf "\n[RASRM_HOME set to ${RASRM_HOME}]\n"
 
 clone: check-env
-	@ printf "\n[${YELLOW} Cloning into ${RASRM_HOME} ${NO_COLOR}]\n"
+	@ printf "\n[Cloning into ${RASRM_HOME}]\n"
 	@ for r in ${REPOS}; do \
 		echo "($${r})"; \
 		if [ ! -e ${RASRM_HOME}/$${r} ]; then \
@@ -23,7 +23,7 @@ clone: check-env
 	done
 
 build: clone
-	@ printf "\n[${YELLOW} Building ${RASRM_HOME} ${NO_COLOR}]\n"
+	@ printf "\n[Building ${RASRM_HOME}]\n"
 	@ for r in ${REPOS}; do \
 		echo "Building ($${r})"; \
 		if [ ! -e ${RASRM_HOME}/$${r}/pom.xml ]; then \
