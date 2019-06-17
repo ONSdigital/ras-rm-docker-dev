@@ -25,7 +25,7 @@ clone: check-env
 build: clone
 	@ printf "\n[Building ${RASRM_HOME}]\n"
 	@ for r in ${REPOS}; do \
-		echo "Building ($${r})"; \
+		echo "Building ($${r}) On branch [`git --git-dir ${RASRM_HOME}/$${r}/.git symbolic-ref --short HEAD`]"; \
 		if [ ! -e ${RASRM_HOME}/$${r}/pom.xml ]; then \
 			if [ $${r} == "rm-comms-template-service" ]; then \
 				docker build -t sdcplatform/comms-template-svc ${RASRM_HOME}/$${r}; \
