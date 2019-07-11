@@ -16,7 +16,7 @@ services:
     image: openzipkin/zipkin
     ports:
     - "${EX_ZIPKIN_PORT}:9411"
-    rabbitmq:
+  rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3.6.10-management
     ports:
