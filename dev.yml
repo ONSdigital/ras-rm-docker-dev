@@ -1,30 +1,30 @@
 version: '3'
 services:
- ons-postgres:
-  container_name: postgres
-  image: sdcplatform/ras-rm-docker-postgres
-  command: ["-c", "shared_buffers=256MB", "-c", "max_connections=200"]
-  ports:
-   - "${EX_POSTGRES_PORT}:5432"
- redis:
-  container_name: redis
-  image: redis:3.2.9
-  ports:
-   - "${EX_REDIS_PORT}:6379"
- zipkin:
-  container_name: zipkin
-  image: openzipkin/zipkin
-  ports:
-  - "${EX_ZIPKIN_PORT}:9411"
- rabbitmq:
-  container_name: rabbitmq
-  image: rabbitmq:3.6.10-management
-  ports:
-    - "5369:4369"
-    - "45672:25672"
-    - "${EX_RABBIT_PORT}:5671-5672"
-    - "16671-16672:15671-15672"
- sftp:
+  ons-postgres:
+    container_name: postgres
+    image: sdcplatform/ras-rm-docker-postgres
+    command: ["-c", "shared_buffers=256MB", "-c", "max_connections=200"]
+    ports:
+      - "${EX_POSTGRES_PORT}:5432"
+  redis:
+    container_name: redis
+    image: redis:3.2.9
+    ports:
+    - "${EX_REDIS_PORT}:6379"
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+    - "${EX_ZIPKIN_PORT}:9411"
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.6.10-management
+    ports:
+      - "5369:4369"
+      - "45672:25672"
+      - "${EX_RABBIT_PORT}:5671-5672"
+      - "16671-16672:15671-15672"
+  sftp:
     container_name: sftp
     image: atmoz/sftp
     volumes:
@@ -32,38 +32,38 @@ services:
     ports:
         - "${EX_SFTP_PORT}:22"
     command: centos:JLibV2&XD,:2000
- cfdatabasetool:
-  container_name: cfdatabasetool
-  image: sdcplatform/cfdatabasetool
-  environment:
-   - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
-   - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=12000
-  ports:
-   - "9000:9000"
-   - "12000:12000"
- pgadmin:
-  container_name: pgadmin
-  image: dpage/pgadmin4
-  ports:
-   - "80:80"
-  environment:
-   - PGADMIN_DEFAULT_EMAIL=ons@ons.gov
-   - PGADMIN_DEFAULT_PASSWORD=secret
-  links:
-   - ons-postgres:postgres
- uaa:
-  container_name: uaa
-  image: sdcplatform/uaa:0.0.1
-  ports:
-    - "9080:8080"
-  volumes:
-    - ./uaa:/uaa
-  environment:
-    - CATALINA_OPTS="-Dspring.profiles.active=postgresql"
-  links:
-   - ons-postgres:postgres
- rasrm-ops:
-  container_name: rasrm-ops
-  image: sdcplatform/rasrm-ops
-  ports:
-  - "8003:80"
+  cfdatabasetool:
+    container_name: cfdatabasetool
+    image: sdcplatform/cfdatabasetool
+    environment:
+    - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+    - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=12000
+    ports:
+    - "9000:9000"
+    - "12000:12000"
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+    - "80:80"
+    environment:
+    - PGADMIN_DEFAULT_EMAIL=ons@ons.gov
+    - PGADMIN_DEFAULT_PASSWORD=secret
+    links:
+    - ons-postgres:postgres
+  uaa:
+    container_name: uaa
+    image: sdcplatform/uaa:0.0.1
+    ports:
+      - "9080:8080"
+    volumes:
+      - ./uaa:/uaa
+    environment:
+      - CATALINA_OPTS="-Dspring.profiles.active=postgresql"
+    links:
+    - ons-postgres:postgres
+  rasrm-ops:
+    container_name: rasrm-ops
+    image: sdcplatform/rasrm-ops
+    ports:
+    - "8003:80"
