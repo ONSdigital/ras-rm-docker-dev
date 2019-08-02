@@ -153,28 +153,6 @@ services:
       timeout: 10s
       retries: 3
 
-  oauth2-service:
-    container_name: oauth2-service
-    build: ${RAS_HOME}/django-oauth2-test
-    volumes:
-      - ${RAS_HOME}/django-oauth2-test:/app
-    ports:
-      - 8040:8040
-    environment:
-      - OAUTH2_SUPER_USER=admin
-      - OAUTH2_SUPER_USER_PASSWORD=admin2017
-      - OAUTH2_SUPER_USER_EMAIL=admin@email.com
-      - DJANGO_SETTINGS_MODULE=proj.settings.docker
-    external_links:
-      - postgres:ras-postgres
-    networks:
-      - rasrmdockerdev_default
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8040/info"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-
   respondent-home-ui:
     container_name: respondent-home-ui
     build: ${RAS_HOME}/respondent-home-ui

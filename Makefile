@@ -1,6 +1,6 @@
 DOT := $(shell command -v dot 2> /dev/null)
 
-RAS_REPOS="ras-party" "ras-secure-message" "ras-frontstage" "ras-collection-instrument" "django-oauth2-test" "ras-rm-auth-service" "respondent-home-ui" "response-operations-ui" "response-operations-social-ui" "rasrm-ops"
+RAS_REPOS="ras-party" "ras-secure-message" "ras-frontstage" "ras-collection-instrument" "ras-rm-auth-service" "respondent-home-ui" "response-operations-ui" "response-operations-social-ui" "rasrm-ops"
 RM_REPOS="rm-sample-service" "rm-case-service" "rm-action-service" "rm-actionexporter-service" "iac-service" "rm-sdx-gateway" "rm-collection-exercise-service" "rm-survey-service" "rm-notify-gateway" "rm-comms-template-service" "rm-reporting"
 REPOS=${RAS_REPOS} ${RM_REPOS}
 
@@ -39,7 +39,7 @@ build: clone
 	done
 
 up:
-	docker-compose -f dev.yml -f ras-services.yml -f rm-services.yml up -d ${SERVICE} ; docker stop oauth2-service && docker start oauth2-service
+	docker-compose -f dev.yml -f ras-services.yml -f rm-services.yml up -d ${SERVICE}
 	pipenv install --dev
 	pipenv run python setup_database.py
 
