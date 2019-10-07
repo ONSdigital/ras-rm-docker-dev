@@ -105,8 +105,8 @@ oauth:
             id: response_operations
             secret: password
             authorized-grant-types: client_credentials,password
-            authorities: scim.userids, scim.me, scim.read
-            scope: scim.userids, scim.me, scim.read
+            authorities: scim.userids, scim.me, scim.read, oauth.login
+            scope: scim.userids, scim.me, scim.read, oauth.login
             resource-ids: oauth
           response_operations_social:
             id: response_operations_social
