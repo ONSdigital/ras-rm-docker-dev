@@ -2,8 +2,8 @@ version: '3'
 
 services:
 
-  party-service:
-    container_name: party-service
+  party:
+    container_name: party
     image: sdcplatform/ras-party
     ports:
       - "${PARTY_PORT}:${PARTY_PORT}"
@@ -31,7 +31,7 @@ services:
       timeout: 10s
       retries: 3
 
-  secure-message-service:
+  secure-message:
     container_name: secure-message
     image: sdcplatform/ras-secure-message
     ports:
@@ -109,7 +109,7 @@ services:
       timeout: 10s
       retries: 3
 
-  collection-instrument-service:
+  collection-instrument:
     container_name: collection-instrument
     image: sdcplatform/ras-collection-instrument
     ports:
