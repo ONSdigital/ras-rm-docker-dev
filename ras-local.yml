@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  party-service:
-    container_name: party-service
+  party:
+    container_name: party
     build: ${RAS_HOME}/ras-party
     volumes:
       - ${RAS_HOME}/ras-party:/app
@@ -33,7 +33,7 @@ services:
       timeout: 10s
       retries: 3
 
-  secure-message-service:
+  secure-message:
     container_name: secure-message
     build: ${RAS_HOME}/ras-secure-message
     volumes:
@@ -119,7 +119,7 @@ services:
       timeout: 10s
       retries: 3
 
-  collection-instrument-service:
+  collection-instrument:
     container_name: collection-instrument
     build: ${RAS_HOME}/ras-collection-instrument
     volumes:
