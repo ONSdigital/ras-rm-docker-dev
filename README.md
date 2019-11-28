@@ -41,7 +41,7 @@ docker-compose -f dev.yml -f ras-services.yml up -d
 This will spin up the development containers and the ras-services.
 
 ```
-docker-compose -f rm-services.yml up -d collex
+docker-compose -f rm-services.yml up -d collection-exercise
 ```
 
 This will spin up just the collection exercise service.
