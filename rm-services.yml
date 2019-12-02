@@ -129,9 +129,9 @@ services:
     container_name: action-exporter
     image: sdcplatform/actionexportersvc
     ports:
-     - "${ACTIONEXP_PORT}:8141"
-     - "${ACTIONEXP_DEBUG_PORT}:5141"
-     - "${ACTIONEXP_MAN_PORT}:8241"
+     - "${ACTION_EXPORTER_PORT}:8141"
+     - "${ACTION_EXPORTER_DEBUG_PORT}:5141"
+     - "${ACTION_EXPORTER_MAN_PORT}:8241"
     external_links:
      - postgres
      - rabbitmq
@@ -147,7 +147,7 @@ services:
      - SFTP_HOST=${SFTP_HOST}
      - SFTP_PORT=${SFTP_PORT}
      - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
-     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTIONEXP_DEBUG_PORT}
+     - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${ACTION_EXPORTER_DEBUG_PORT}
      - FREEMARKER_DELAYFORNEWTEMPLATES=3600000
      - DATA_GRID_LOCK_TIME_TO_LIVE_SECONDS=45
      - LIQUIBASE_USER=${POSTGRES_USERNAME}
