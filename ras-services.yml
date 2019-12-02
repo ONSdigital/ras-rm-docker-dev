@@ -113,7 +113,7 @@ services:
     container_name: collection-instrument
     image: sdcplatform/ras-collection-instrument
     ports:
-      - "${COLL_INST_PORT}:${COLL_INST_PORT}"
+      - "${COLLECTION_INSTRUMENT_PORT}:${COLLECTION_INSTRUMENT_PORT}"
     environment:
       - DATABASE_URI=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
@@ -135,7 +135,7 @@ services:
     external_links:
       - postgres:ras-postgres
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:${COLL_INST_PORT}/info"]
+      test: ["CMD", "curl", "-f", "http://localhost:${COLLECTION_INSTRUMENT_PORT}/info"]
       interval: 1m30s
       timeout: 10s
       retries: 3
