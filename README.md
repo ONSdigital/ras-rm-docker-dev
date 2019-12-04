@@ -41,7 +41,7 @@ docker-compose -f dev.yml -f ras-services.yml up -d
 This will spin up the development containers and the ras-services.
 
 ```
-docker-compose -f rm-services.yml up -d collex
+docker-compose -f rm-services.yml up -d collection-exercise
 ```
 
 This will spin up just the collection exercise service.
@@ -99,9 +99,9 @@ make: *** [pull] Error 1
 
 ### Port already bound to
 ```
-ERROR: for collection-instrument  Cannot start service collection-instrument-service: driver failed programming external connectivity on endpoint collection-instrument (7c6ad787c9d57028a44848719d8d705b14e1f82ea2f393ada80e5f7e476c50b1): Error starting userland pStarting secure-message ... done
+ERROR: for collection-instrument  Cannot start service collection-instrument: driver failed programming external connectivity on endpoint collection-instrument (7c6ad787c9d57028a44848719d8d705b14e1f82ea2f393ada80e5f7e476c50b1): Error starting userland pStarting secure-message ... done
 
-ERROR: for collection-instrument-service  Cannot start service collection-instrument-service: driver failed programming external connectivity on endpoint collection-instrument (7c6ad787c9d57028a44848719d8d705b14e1f82ea2f393ada80e5f7e476c50b1): Error starting userland proxy: Bind for 0.0.0.0:8002 failed: port is already allocated
+ERROR: for collection-instrument  Cannot start service collection-instrument: driver failed programming external connectivity on endpoint collection-instrument (7c6ad787c9d57028a44848719d8d705b14e1f82ea2f393ada80e5f7e476c50b1): Error starting userland proxy: Bind for 0.0.0.0:8002 failed: port is already allocated
 ERROR: Encountered errors while bringing up the project.
 make: *** [up] Error 1
 ```
