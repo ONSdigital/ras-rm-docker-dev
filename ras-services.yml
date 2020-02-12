@@ -313,6 +313,10 @@ services:
     image: sdcplatform/ras-rm-party
     ports: 
       - 6969:6969
+    environment:
+      - UNLEASH_PATH=http://${UNLEASH_HOST}:${UNLEASH_PORT}/api
+      - SERVICE_NAME=ras-rm-party-docker
+      - LISTEN_PORT=6969
     networks:
       - rasrmdockerdev_default
     healthcheck:
