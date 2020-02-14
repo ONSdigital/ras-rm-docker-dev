@@ -312,15 +312,15 @@ services:
     container_name: ras-rm-party
     image: sdcplatform/ras-rm-party
     ports: 
-      - 6969:6969
+      - 8059:8059
     environment:
       - UNLEASH_PATH=http://${UNLEASH_HOST}:${UNLEASH_PORT}/api
       - SERVICE_NAME=ras-rm-party-docker
-      - LISTEN_PORT=6969
+      - LISTEN_PORT=8059
     networks:
       - rasrmdockerdev_default
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:6969/v2"]
+      test: ["CMD", "curl", "-f", "http://localhost:8059/v2"]
       interval: 1m30s
       timeout: 10s
       retries: 3
