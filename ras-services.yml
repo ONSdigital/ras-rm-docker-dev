@@ -297,6 +297,34 @@ services:
       timeout: 10s
       retries: 3
 
+  unleash:
+    container_name: unleash
+    image: unleashorg/unleash-server
+    ports:
+      - 4242:4242
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
+    networks:
+      - rasrmdockerdev_default
+    restart: on-failure
+  
+  ras-rm-party:
+    container_name: ras-rm-party
+    image: sdcplatform/ras-rm-party
+    ports: 
+      - 8059:8059
+    environment:
+      - UNLEASH_PATH=http://${UNLEASH_HOST}:${UNLEASH_PORT}/api
+      - SERVICE_NAME=ras-rm-party-docker
+      - LISTEN_PORT=8059
+    networks:
+      - rasrmdockerdev_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8059/v2"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
 networks:
    rasrmdockerdev_default:
      external: true
