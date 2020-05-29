@@ -11,11 +11,6 @@ services:
     image: redis:3.2.9
     ports:
     - "${EX_REDIS_PORT}:6379"
-  zipkin:
-    container_name: zipkin
-    image: openzipkin/zipkin
-    ports:
-    - "${EX_ZIPKIN_PORT}:9411"
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3.6.10-management

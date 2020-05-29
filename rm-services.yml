@@ -26,16 +26,14 @@ services:
      - SFTP_PORT=${SFTP_PORT}
      - PARTY_SVC_CONNECTION_CONFIG_HOST=${PARTY_HOST}
      - PARTY_SVC_CONNECTION_CONFIG_PORT=${PARTY_PORT}
-     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${PARTY_USER}
-     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
+     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${SECURITY_USER_NAME}
+     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${SECURITY_USER_PASSWORD}
      - SAMPLE_UNIT_DISTRIBUTION_DELAY_MILLI_SECONDS=1000
      - JAVA_OPTS=-Xmx128m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${SAMPLE_DEBUG_PORT} -Dlogging.level.uk.gov.ons.ctp.response.sample.scheduled.distribution=WARN -Dlogging.level.uk.gov.ons.ctp.common.distributed=INFO
      - LIQUIBASE_USER=${POSTGRES_USERNAME}
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
-     - SPRING_ZIPKIN_ENABLED=true
-     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8125/info"]
       interval: 1m30s
@@ -73,8 +71,6 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
-     - SPRING_ZIPKIN_ENABLED=true
-     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8171/info"]
       interval: 1m30s
@@ -106,8 +102,8 @@ services:
      - DATA_GRID_ADDRESS=${REDIS_HOST}:${REDIS_PORT}
      - PARTY_SVC_CONNECTION_CONFIG_HOST=${PARTY_HOST}
      - PARTY_SVC_CONNECTION_CONFIG_PORT=${PARTY_PORT}
-     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${PARTY_USER}
-     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
+     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${SECURITY_USER_NAME}
+     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${SECURITY_USER_PASSWORD}
      - SURVEY_SVC_CONNECTION_CONFIG_HOST=${SURVEY_HOST}
      - SURVEY_SVC_CONNECTION-CONFIG_PORT=${SURVEY_PORT}
      - SAMPLE_SVC_CONNECTION_CONFIG_HOST=${SAMPLE_HOST}
@@ -117,8 +113,6 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
-     - SPRING_ZIPKIN_ENABLED=true
-     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8151/info"]
       interval: 1m30s
@@ -156,8 +150,6 @@ services:
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
      - LOGGING_LEVEL_uk.gov.ons.ctp.response.action.export.scheduled=WARN
      - EXPORT_SCHEDULE_CRON_EXPRESSION=*/30 * * * * *
-     - SPRING_ZIPKIN_ENABLED=true
-     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8141/info"]
       interval: 1m30s
@@ -189,8 +181,6 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
-     - SPRING_ZIPKIN_ENABLED=true
-     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8121/info"]
       interval: 1m30s
@@ -224,8 +214,6 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
-     - SPRING_ZIPKIN_ENABLED=true
-     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8191/info"]
       interval: 1m30s
@@ -259,8 +247,8 @@ services:
      - SURVEY_SVC_CONNECTION_CONFIG_PORT=${SURVEY_PORT}
      - PARTY_SVC_CONNECTION_CONFIG_HOST=${PARTY_HOST}
      - PARTY_SVC_CONNECTION_CONFIG_PORT=${PARTY_PORT}
-     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${PARTY_USER}
-     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${PARTY_PASSWORD}
+     - PARTY_SVC_CONNECTION_CONFIG_USERNAME=${SECURITY_USER_NAME}
+     - PARTY_SVC_CONNECTION_CONFIG_PASSWORD=${SECURITY_USER_PASSWORD}
      - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_HOST=${COLLECTION_INSTRUMENT_HOST}
      - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_PORT=${COLLECTION_INSTRUMENT_PORT}
      - COLLECTION_INSTRUMENT_SVC_CONNECTION_CONFIG_USERNAME=${SECURITY_USER_NAME}
@@ -272,8 +260,6 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
-     - SPRING_ZIPKIN_ENABLED=true
-     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8145/info"]
       interval: 1m30s
@@ -289,11 +275,8 @@ services:
      - postgres
     environment:
      - DATABASE_URL=postgres://postgres:postgres@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres?sslmode=disable
-     - security_user_name=${SURVEY_USER}
-     - security_user_password=${SURVEY_PASSWORD}
-     - ZIPKIN_DSN=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/api/v1/spans
-     - ZIPKIN_SAMPLE_RATE=1.0
-     - ZIPKIN_DISABLE=False
+     - security_user_name=${SECURITY_USER_NAME}
+     - security_user_password=${SECURITY_USER_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/info"]
       interval: 1m30s
@@ -320,8 +303,6 @@ services:
      - LIQUIBASE_PASSWORD=${POSTGRES_PASSWORD}
      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
-     - SPRING_ZIPKIN_ENABLED=true
-     - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "-XGET", "http://localhost:8181/info"]
       interval: 1m30s
@@ -339,8 +320,6 @@ services:
       - SQLALCHEMY_DATABASE_URI=postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
       - SECURITY_USER_NAME=${SECURITY_USER_NAME}
       - SECURITY_USER_PASSWORD=${SECURITY_USER_PASSWORD}
-      - SPRING_ZIPKIN_ENABLED=true
-      - SPRING_ZIPKIN_BASEURL=http://${ZIPKIN_HOST}:${ZIPKIN_PORT}/
     healthcheck:
       test: ["CMD", "curl", "-f", "-XGET", "http://localhost:8182/info"]
       interval: 1m30s
